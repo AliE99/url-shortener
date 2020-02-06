@@ -5069,11 +5069,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ali/Desktop/url-shortener/src/src.csproj",
+      "projectUniqueName": "/home/ali/Desktop/url_shortener/src/src.csproj",
       "projectName": "src",
-      "projectPath": "/home/ali/Desktop/url-shortener/src/src.csproj",
+      "projectPath": "/home/ali/Desktop/url_shortener/src/src.csproj",
       "packagesPath": "/home/ali/.nuget/packages/",
-      "outputPath": "/home/ali/Desktop/url-shortener/src/obj/",
+      "outputPath": "/home/ali/Desktop/url_shortener/src/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ali/.nuget/NuGet/NuGet.Config"
