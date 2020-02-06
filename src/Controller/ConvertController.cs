@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using src.Models;   
 using src.Contexts;
-
+using System.Linq;
 
 namespace src.Controller
 {
-    [Route("api/save")]
+    [Route("/urls")]
     [ApiController]
     public class ConvertController : ControllerBase
     {
@@ -20,15 +20,39 @@ namespace src.Controller
         }
 
         [HttpPost]
-        public void getLongUrl([FromBody]Url url){
+        public ActionResult<string> getLongUrl([FromBody]Url url){
+            // if(isValid(url.longUrl))
+            // {
+            //     return "fuck you";
+            // }
 
-            _context.urls.Add(url);
+            makeShortUrl(url);
+              _context.urls.Add(url);
+              _context.SaveChanges();
+            return url.shortUrl;
         }
 
 
-        public Url makeShortUrl(Url longUrl){
-            Url  shortUrl = longUrl;
-            return shortUrl;
+        public void makeShortUrl(Url url){
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            var stringChars = new char[8];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+            url.shortUrl = finalString;
+
+        }
+
+        public Boolean isValid(string uriName){
+            Uri uriResult;
+            bool result = Uri.TryCreate(uriName, UriKind.Absolute, out uriResult) 
+            && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);    
+            return result;
         }
     }
 }
