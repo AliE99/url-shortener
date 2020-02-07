@@ -2,7 +2,7 @@
 
 namespace src.Migrations
 {
-    public partial class BookingAppDbContext : Migration
+    public partial class url_shortenerAppDbContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

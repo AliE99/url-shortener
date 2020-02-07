@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using src.Models;   
 using src.Contexts;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 namespace src.Controller
 {
     [Route("/urls")]
@@ -21,14 +21,14 @@ namespace src.Controller
 
         [HttpPost]
         public ActionResult<string> getLongUrl([FromBody]Url url){
-            // if(isValid(url.longUrl))
-            // {
-            //     return "fuck you";
-            // }
+            if(!isValid(url.longUrl))
+            {
+                return "The Url is not valid";
+            }
 
             makeShortUrl(url);
-              _context.urls.Add(url);
-              _context.SaveChanges();
+            _context.urls.Add(url);
+            _context.SaveChanges();
             return url.shortUrl;
         }
 
@@ -48,11 +48,15 @@ namespace src.Controller
 
         }
 
-        public Boolean isValid(string uriName){
-            Uri uriResult;
-            bool result = Uri.TryCreate(uriName, UriKind.Absolute, out uriResult) 
-            && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);    
-            return result;
+        public Boolean isValid(string url){
+            Regex rx = new Regex(@"((www\.|(http|https|ftp|news|file)+\:\/\/)[_.a-z0-9-]+\.[a-z0-9\/_:@=.+?,##%&~-]*[^.|\'|\# |!|\(|?|,| |>|<|;|\)])");
+            Match match =  rx.Match(url);
+            if(match.Success){
+                return true;
+            }else{
+                return false;
+            }
+ 
         }
     }
 }

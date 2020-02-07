@@ -9,8 +9,8 @@ using src.Contexts;
 namespace src.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200206141413_Booking.AppDbContext")]
-    partial class BookingAppDbContext
+    [Migration("20200207073200_url_shortener.AppDbContext")]
+    partial class url_shortenerAppDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
