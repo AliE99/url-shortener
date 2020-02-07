@@ -7,6 +7,9 @@ using src.Models;
 using src.Contexts;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Net;
+
+
 namespace src.Controller
 {
     [Route("/urls")]
@@ -23,7 +26,7 @@ namespace src.Controller
         public ActionResult<string> getLongUrl([FromBody]Url url){
             if(!isValid(url.longUrl))
             {
-                return "The Url is not valid";
+                return BadRequest();
             }
 
             makeShortUrl(url);
@@ -58,5 +61,6 @@ namespace src.Controller
             }
  
         }
+    
     }
 }
