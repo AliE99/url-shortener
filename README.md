@@ -1,15 +1,15 @@
-#URL_SHORTENER
+# URL_SHORTENER
 make links shorter
 
-####Run
+#### Run
 ```
 dotnet run
 ```
-####Test
+#### Test
 ```
 dotnet test
 ```
-####EndPoint
+#### EndPoint
 For Post and shortener your URL :
 http://localhost:5000/urls
 ```json
@@ -21,5 +21,5 @@ For Get and redirect :
 http://localhost:5000/redirect/"shortUrl"
 
 
-###Developer
+### Developer
 Ali Elahi
